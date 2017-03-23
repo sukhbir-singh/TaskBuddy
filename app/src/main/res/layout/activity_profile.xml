@@ -94,14 +94,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/activity_single_restaurant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/profile_tab"
-                    android:background="#5e68f4"
+                    android:background="#1af"
+                    android:layout_weight="0"
                     app:tabIndicatorColor="@color/cardview_light_background"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"/>
@@ -111,9 +113,9 @@
                     android:background="#a6a6a6"
                     android:layout_below="@+id/profile_tab"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="100dp"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
