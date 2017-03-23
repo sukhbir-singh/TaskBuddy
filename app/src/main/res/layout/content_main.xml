@@ -14,8 +14,13 @@
     tools:context="in.coders.fsociety.taskbuddy.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <Button
+        android:text="Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="27dp"
+        android:id="@+id/profile"/>
+
 </RelativeLayout>
