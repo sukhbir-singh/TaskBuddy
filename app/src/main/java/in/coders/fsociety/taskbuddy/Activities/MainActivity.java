@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent i = new Intent(MainActivity.this, UploadPost.class);
+                Intent i = new Intent(MainActivity.this, UploadPostActivity.class);
                 startActivity(i);
             }
         });
@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
             return true;
+        }
+        else if(id==R.id.action_search){
+            startActivity(new Intent(MainActivity.this,SearchActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

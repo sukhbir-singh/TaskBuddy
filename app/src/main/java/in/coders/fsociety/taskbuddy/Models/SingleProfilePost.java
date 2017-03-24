@@ -1,11 +1,17 @@
 package in.coders.fsociety.taskbuddy.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class SingleProfilePost {
+/**
+ * Created by root on 24/3/17.
+ */
 
+public class SingleProfilePost implements Parcelable{
     /*
       {
        "authorName": "Rahul",
@@ -47,6 +53,55 @@ public class SingleProfilePost {
     private ArrayList<String> tags;
     @SerializedName("title")
     private String title;
+
+    @SerializedName("userProgress")
+    private int userProgress;
+
+    protected SingleProfilePost(Parcel in) {
+        credit = in.readInt();
+        description = in.readString();
+        authorName = in.readString();
+        authorPicUrl = in.readString();
+        id = in.readInt();
+        noOfParticipant = in.readInt();
+        postPicUrl = in.readString();
+        status = in.readByte() != 0;
+        tags = in.createStringArrayList();
+        title = in.readString();
+        userProgress = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(credit);
+        dest.writeString(description);
+        dest.writeString(authorName);
+        dest.writeString(authorPicUrl);
+        dest.writeInt(id);
+        dest.writeInt(noOfParticipant);
+        dest.writeString(postPicUrl);
+        dest.writeByte((byte) (status ? 1 : 0));
+        dest.writeStringList(tags);
+        dest.writeString(title);
+        dest.writeInt(userProgress);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<SingleProfilePost> CREATOR = new Creator<SingleProfilePost>() {
+        @Override
+        public SingleProfilePost createFromParcel(Parcel in) {
+            return new SingleProfilePost(in);
+        }
+
+        @Override
+        public SingleProfilePost[] newArray(int size) {
+            return new SingleProfilePost[size];
+        }
+    };
 
     public int getCredit() {
         return credit;
@@ -112,6 +167,34 @@ public class SingleProfilePost {
         this.title = title;
     }
 
+
+    public SingleProfilePost(int credit, String description, String authorName, String authorPicUrl, int id, int noOfParticipant, String postPicUrl, boolean status, ArrayList<String> tags, String title) {
+        this.credit = credit;
+        this.description = description;
+        this.authorName = authorName;
+        this.authorPicUrl = authorPicUrl;
+        this.id = id;
+        this.noOfParticipant = noOfParticipant;
+        this.postPicUrl = postPicUrl;
+        this.status = status;
+        this.tags = tags;
+        this.title = title;
+    }
+
+    public SingleProfilePost(int credit, String description, String authorName, String authorPicUrl, int id, int noOfParticipant, String postPicUrl, ArrayList<String> tags, String title, int userProgress) {
+        this.credit = credit;
+        this.description = description;
+        this.authorName = authorName;
+        this.authorPicUrl = authorPicUrl;
+        this.id = id;
+        this.noOfParticipant = noOfParticipant;
+        this.postPicUrl = postPicUrl;
+        this.tags = tags;
+        this.title = title;
+        this.userProgress = userProgress;
+    }
+
+
     public String getAuthorName() {
         return authorName;
     }
@@ -128,6 +211,13 @@ public class SingleProfilePost {
         this.authorPicUrl = authorPicUrl;
     }
 
-    public SingleProfilePost() {
+
+    public int getUserProgress() {
+        return userProgress;
+    }
+
+    public void setUserProgress(int userProgress) {
+        this.userProgress = userProgress;
+
     }
 }
