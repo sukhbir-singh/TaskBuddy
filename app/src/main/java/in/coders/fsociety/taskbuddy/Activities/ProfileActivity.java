@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
-import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment1;
+import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.Util;
@@ -117,13 +117,13 @@ public class ProfileActivity extends AppCompatActivity{
             Fragment fragment=null;
 
             switch (position){
-                case 0: fragment= ProfileFragment1.getInstance(ProfileActivity.this,1);
+                case 0: fragment= ProfileFragment.getInstance(ProfileActivity.this,1);
                     break;
-                case 1: fragment= ProfileFragment1.getInstance(ProfileActivity.this,2);
+                case 1: fragment= ProfileFragment.getInstance(ProfileActivity.this,2);
                     break;
-                case 2: fragment= ProfileFragment1.getInstance(ProfileActivity.this,3);
+                case 2: fragment= ProfileFragment.getInstance(ProfileActivity.this,3);
                     break;
-                default:fragment= ProfileFragment1.getInstance(ProfileActivity.this,1);
+                default:fragment= ProfileFragment.getInstance(ProfileActivity.this,1);
             }
 
             return fragment;
