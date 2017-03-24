@@ -8,12 +8,35 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.ImageViewTarget;
+
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
 import in.coders.fsociety.taskbuddy.Models.SingleProfilePost;
 import in.coders.fsociety.taskbuddy.R;
+
+import static in.coders.fsociety.taskbuddy.R.id.profilePic;
 
 public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHolder> {
 
@@ -33,7 +56,7 @@ public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         if(arrayList!=null){
 
             if(arrayList.get(position).getTitle()!=null){
@@ -52,7 +75,18 @@ public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHo
                 if(tags_text.length()>=2)
                 holder.tags.setText(tags_text);
 
-                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+//                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+
+                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).
+                        placeholder(R.drawable.person_icon).error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(holder.profilePic) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(context.getResources(),resource);
+                        drawable.setCircular(true);
+                        holder.profilePic.setImageDrawable(drawable);
+                    }
+                });
+
             }
         }
     }
