@@ -24,7 +24,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 
+import in.coders.fsociety.taskbuddy.Adapters.MainAdapter;
 import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
+import in.coders.fsociety.taskbuddy.Models.MainPostModel;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.R;
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getProfile("847596855g3");
-        //getAllPosts("847596855g3");
+        getAllPosts("847596855g3");
 
     }
 
@@ -122,16 +124,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void  getAllPosts(String id){
-        Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
-        call.enqueue(new Callback<ProfilePostModel>() {
+        Call<MainPostModel> call= Util.getRetrofitService().getMainPosts(id);
+        call.enqueue(new Callback<MainPostModel>() {
             @Override
-            public void onResponse(Call<ProfilePostModel> call, Response<ProfilePostModel> response) {
-                ProfilePostModel r=response.body();
+            public void onResponse(Call<MainPostModel> call, Response<MainPostModel> response) {
+                MainPostModel r=response.body();
 
                 bar.setVisibility(View.GONE);
 
+                Log.v("main posts-response",  new Gson().toJson(response.body()));
+
                 if(r!=null&&response.isSuccess()){
-                    ProfileAdapter1 adapter1=new ProfileAdapter1(MainActivity.this, r.getPosts());
+                    MainAdapter adapter1=new MainAdapter(MainActivity.this, r.getPosts());
                     recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
                     recyclerView.setAdapter(adapter1);
@@ -139,11 +143,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("main size",""+r.getPosts().size());
 
                 }
+
             }
 
             @Override
-            public void onFailure(Call<ProfilePostModel> call, Throwable t) {
-                bar.setVisibility(View.GONE);
+            public void onFailure(Call<MainPostModel> call, Throwable t) {
+
             }
         });
     }
@@ -158,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 UserModel model=response.body();
 
-                Log.v("profile-response",  new Gson().toJson(response.body()));
+               // Log.v("profile-response",  new Gson().toJson(response.body()));
 
                 if(model!=null&&response.isSuccess()){
                     linearProfile.setVisibility(View.VISIBLE);

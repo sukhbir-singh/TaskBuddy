@@ -1,5 +1,6 @@
 package in.coders.fsociety.taskbuddy.Utils;
 
+import in.coders.fsociety.taskbuddy.Models.MainPostModel;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.Activities.UploadPost;
@@ -9,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface ApiInterface {
@@ -32,5 +34,8 @@ public interface ApiInterface {
 
     @GET("/profile/post/{id}")
     Call<ProfilePostModel> getProfilePosts(@Path("id") String id);
+
+    @GET("/main/post")
+    Call<MainPostModel> getMainPosts(@Query("id") String id);
 
 }
