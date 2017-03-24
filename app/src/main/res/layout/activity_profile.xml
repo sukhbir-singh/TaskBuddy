@@ -62,7 +62,21 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/activity_profile"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/user_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -71,7 +85,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/userbio"
+                android:id="@+id/profile_bio"
                 android:textSize="18sp"
                 android:text="User Bio"
                 android:layout_width="wrap_content"
@@ -83,9 +97,23 @@
                 android:layout_height="1dp"/>
 
             <TextView
+                android:id="@+id/profile_friends"
                 android:padding="10dp"
                 android:textSize="18sp"
-                android:text="113 Friends in connection"
+                android:text="113 Friends in Connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <View
+                android:background="#c9c9c9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <TextView
+                android:id="@+id/profile_circles"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:text="4 Circles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -117,6 +145,7 @@
 
             </LinearLayout>
 
+        </LinearLayout>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
