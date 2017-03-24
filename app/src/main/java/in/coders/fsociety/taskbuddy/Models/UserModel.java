@@ -24,7 +24,7 @@ public class UserModel implements Parcelable {
       "success": true
    */
 
-    
+
     @SerializedName("bio")
     private String bio;
     @SerializedName("circleCount")

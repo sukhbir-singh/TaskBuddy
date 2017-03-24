@@ -1,5 +1,6 @@
 package in.coders.fsociety.taskbuddy.Utils;
 
+import in.coders.fsociety.taskbuddy.Models.MainPostModel;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.Models.SearchResponse;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
@@ -38,7 +39,10 @@ public interface ApiInterface {
     @GET("/profile/post/{id}")
     Call<ProfilePostModel> getProfilePosts(@Path("id") String id);
 
+
     @GET("/search")
     Call<SearchResponse> getSearchResult(@Query("userId") String userID,@Query("keyword") String keyword);
+    @GET("/main/post")
+    Call<MainPostModel> getMainPosts(@Query("id") String id);
 
 }
