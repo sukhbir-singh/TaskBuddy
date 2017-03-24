@@ -167,6 +167,7 @@ public class SingleProfilePost implements Parcelable{
         this.title = title;
     }
 
+
     public SingleProfilePost(int credit, String description, String authorName, String authorPicUrl, int id, int noOfParticipant, String postPicUrl, boolean status, ArrayList<String> tags, String title) {
         this.credit = credit;
         this.description = description;
@@ -193,6 +194,7 @@ public class SingleProfilePost implements Parcelable{
         this.userProgress = userProgress;
     }
 
+
     public String getAuthorName() {
         return authorName;
     }
@@ -209,11 +211,13 @@ public class SingleProfilePost implements Parcelable{
         this.authorPicUrl = authorPicUrl;
     }
 
+
     public int getUserProgress() {
         return userProgress;
     }
 
     public void setUserProgress(int userProgress) {
         this.userProgress = userProgress;
+
     }
 }

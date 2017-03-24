@@ -119,11 +119,11 @@ public class ProfileActivity extends AppCompatActivity{
             switch (position){
                 case 0: fragment= ProfileFragment.getInstance(ProfileActivity.this,1);
                     break;
-                case 1: fragment=ProfileFragment.getInstance(ProfileActivity.this,2);
+                case 1: fragment= ProfileFragment.getInstance(ProfileActivity.this,2);
                     break;
-                case 2: fragment=ProfileFragment.getInstance(ProfileActivity.this,3);
+                case 2: fragment= ProfileFragment.getInstance(ProfileActivity.this,3);
                     break;
-                default:fragment=ProfileFragment.getInstance(ProfileActivity.this,1);
+                default:fragment= ProfileFragment.getInstance(ProfileActivity.this,1);
             }
 
             return fragment;
@@ -153,9 +153,9 @@ public class ProfileActivity extends AppCompatActivity{
                     Glide.with(ProfileActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
 
                     if(model.getBio()!=null){
-                        bio.setText(model.getEmail()+"\n"+model.getBio());
+                        bio.setText("Email: "+model.getEmail()+"\n"+model.getBio());
                     }else{
-                        bio.setText(model.getEmail());
+                        bio.setText("Email: "+model.getEmail());
                     }
 
                     getSupportActionBar().setTitle(model.getName());
@@ -163,13 +163,13 @@ public class ProfileActivity extends AppCompatActivity{
                     if(model.getFriendCount()==0){
                         friends.setText("No friends yet");
                     }else{
-                        friends.setText(model.getFriendCount()+"");
+                        friends.setText("Friends: "+model.getFriendCount()+"");
                     }
 
                     if(model.getCircleCount()==0){
                         circles.setText("Not a part of any circle");
                     }else{
-                        circles.setText(model.getCircleCount()+"");
+                        circles.setText("Circles: "+model.getCircleCount()+"");
                     }
 
                 }else{

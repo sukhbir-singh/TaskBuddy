@@ -5,14 +5,17 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+
 /**
  * Created by root on 24/3/17.
  */
 
 public class UserModel implements Parcelable {
+
    /*
       "bio": null,
       "circleCount": 0,
+      "credit": 100,
       "email": "apc.ss@gmail.com",
       "friendCount": 0,
       "id": "847596855g3",
@@ -21,6 +24,7 @@ public class UserModel implements Parcelable {
       "success": true
    */
 
+    
     @SerializedName("bio")
     private String bio;
     @SerializedName("circleCount")
@@ -44,15 +48,12 @@ public class UserModel implements Parcelable {
     public UserModel() {
     }
 
-    public UserModel(String bio, int circleCount, String email, int friendCount, String id, String name, String picUrl, boolean success) {
-        this.bio = bio;
-        this.circleCount = circleCount;
-        this.email = email;
-        this.friendCount = friendCount;
-        this.id = id;
-        this.name = name;
-        this.picUrl = picUrl;
-        this.success = success;
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public UserModel(String bio, int credit, String name, String picUrl, String id) {
@@ -105,13 +106,7 @@ public class UserModel implements Parcelable {
         }
     };
 
-    public int getCredit() {
-        return credit;
-    }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
 
     public String getBio() {
         return bio;

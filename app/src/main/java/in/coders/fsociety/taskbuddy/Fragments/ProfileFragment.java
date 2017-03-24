@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
+import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter2;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.Util;
@@ -45,7 +47,7 @@ public class ProfileFragment extends Fragment {
         this.context = context;
     }
 
-   public static ProfileFragment getInstance(Context context,int type){
+   public static ProfileFragment getInstance(Context context, int type){
        ProfileFragment fragment=new ProfileFragment();
        fragment.setContext(context);
        fragment.setType(type);
@@ -59,13 +61,20 @@ public class ProfileFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_recycler,container,false);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler);
+        bar=(ProgressBar)view.findViewById(R.id.bar);
 
         if(type==1){
             view.setBackgroundColor(Color.parseColor("#12f23a"));
+            getAllPosts("847596855g3");
+
         }else if(type==2){
             view.setBackgroundColor(Color.parseColor("#fff23a"));
+            getAllWorks("847596855g3");
+
         }else{
             view.setBackgroundColor(Color.parseColor("#f21f3a"));
+            getAllCircles("847596855g3");
+
         }
 
         LinearLayoutManager manager=new LinearLayoutManager(context);
@@ -83,9 +92,73 @@ public class ProfileFragment extends Fragment {
                 ProfilePostModel r=response.body();
 
                 if(r!=null&&response.isSuccess()){
+                    ProfileAdapter1 adapter1=new ProfileAdapter1(context, r.getPosts());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-                    Log.d("size",""+r.getPosts().size());
-                    //adapter.setList(r.getGetAllMeal());
+                    recyclerView.setAdapter(adapter1);
+
+                    Log.d("profile fragment size",""+r.getPosts().size());
+
+
+                    bar.setVisibility(View.GONE);
+                }
+                else {
+                    bar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfilePostModel> call, Throwable t) {
+                bar.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void getAllWorks(String id){
+        Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
+        call.enqueue(new Callback<ProfilePostModel>() {
+            @Override
+            public void onResponse(Call<ProfilePostModel> call, Response<ProfilePostModel> response) {
+                ProfilePostModel r=response.body();
+
+                if(r!=null&&response.isSuccess()){
+
+                    ProfileAdapter2 adapter2=new ProfileAdapter2(context, r.getPosts());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+                    recyclerView.setAdapter(adapter2);
+
+                    Log.d("profile works size",""+r.getPosts().size());
+
+                    bar.setVisibility(View.GONE);
+                }
+                else {
+                    bar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfilePostModel> call, Throwable t) {
+                bar.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void getAllCircles(String id){
+        Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
+        call.enqueue(new Callback<ProfilePostModel>() {
+            @Override
+            public void onResponse(Call<ProfilePostModel> call, Response<ProfilePostModel> response) {
+                ProfilePostModel r=response.body();
+
+                if(r!=null&&response.isSuccess()){
+                    ProfileAdapter1 adapter1=new ProfileAdapter1(context, r.getPosts());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+                    recyclerView.setAdapter(adapter1);
+
+                    Log.d("profile circles size",""+r.getPosts().size());
+
 
                     bar.setVisibility(View.GONE);
                 }

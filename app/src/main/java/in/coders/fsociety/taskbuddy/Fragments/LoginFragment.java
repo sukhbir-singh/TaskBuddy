@@ -34,10 +34,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by jaykay12 on 24/3/17.
- */
-
 public class LoginFragment extends Fragment {
 
     private LoginButton btnLogin;

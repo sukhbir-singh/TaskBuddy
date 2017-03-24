@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy.Adapter;
+package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -15,12 +16,12 @@ import java.util.ArrayList;
 import in.coders.fsociety.taskbuddy.Models.SingleProfilePost;
 import in.coders.fsociety.taskbuddy.R;
 
-public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHolder> {
+public class ProfileAdapter2 extends RecyclerView.Adapter<ProfileAdapter2.ViewHolder> {
 
     ArrayList<SingleProfilePost> arrayList=new ArrayList<>();
     Context context;
 
-    public ProfileAdapter1(Context context, ArrayList<SingleProfilePost> posts){
+    public ProfileAdapter2(Context context, ArrayList<SingleProfilePost> posts){
         this.context = context;
         this.arrayList=posts;
     }
