@@ -58,7 +58,7 @@ public class UploadPostActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Title = title.getText().toString();
-                Description = description.toString();
+                Description = description.getText().toString();
                 Credit = Integer.parseInt("00"+credit.getText().toString());
                 Tag = tag.getText().toString();
 
@@ -82,11 +82,15 @@ public class UploadPostActivity extends AppCompatActivity {
             }
         });
     }
+
     public void upload_post(){
 
         pb.setVisibility(View.VISIBLE);
-        Call<Response1> userSentResponseCall= Util.getRetrofitService().sendPostData(Title, Description, Credit, Tag, "",post_type,
-                authorid, circlesid);
+
+        authorid=new SharedPref(this).getUserId()+"";
+
+        Call<Response1> userSentResponseCall= Util.getRetrofitService()
+                .sendPostData(Title, Description, Credit, Tag, "",post_type, authorid, circlesid);
         userSentResponseCall.enqueue(new Callback<Response1>() {
             @Override
             public void onResponse(Call<Response1> call, Response<Response1> response) {

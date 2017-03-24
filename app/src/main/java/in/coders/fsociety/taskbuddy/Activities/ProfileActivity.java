@@ -41,7 +41,6 @@ public class ProfileActivity extends AppCompatActivity{
     private TabLayout tab;
     private int id;
     private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
     private TextView circles,bio,friends;
     private LinearLayout user_details;
     private ProgressBar bar;

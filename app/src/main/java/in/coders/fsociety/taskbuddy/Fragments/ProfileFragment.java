@@ -72,15 +72,15 @@ public class ProfileFragment extends Fragment {
         bar=(ProgressBar)view.findViewById(R.id.bar);
 
         if(type==1){
-            view.setBackgroundColor(Color.parseColor("#12f23a"));
+            view.setBackgroundColor(Color.parseColor("#e9fded"));
             getAllPosts(sharedPref.getUserId());
 
         }else if(type==2){
-            view.setBackgroundColor(Color.parseColor("#fff23a"));
+            view.setBackgroundColor(Color.parseColor("#fffded"));
             getAllWorks(sharedPref.getUserId());
 
         }else{
-            view.setBackgroundColor(Color.parseColor("#f21f3a"));
+            view.setBackgroundColor(Color.parseColor("#fdeaed"));
             getAllCircles(sharedPref.getUserId());
 
         }

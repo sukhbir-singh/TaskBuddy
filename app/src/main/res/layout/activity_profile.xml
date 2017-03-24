@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:fitsSystemWindows="true"
-            android:background="#1af"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -85,8 +84,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/profile_bio"
                 android:textSize="18sp"
+                android:padding="10dp"
                 android:text="User Bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -97,6 +98,8 @@
                 android:layout_height="1dp"/>
 
             <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/profile_friends"
                 android:padding="10dp"
                 android:textSize="18sp"
@@ -110,6 +113,8 @@
                 android:layout_height="1dp"/>
 
             <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/profile_circles"
                 android:padding="10dp"
                 android:textSize="18sp"
@@ -130,7 +135,9 @@
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/profile_tab"
-                    android:background="#1af"
+                    app:tabTextColor="@color/colorTextLight"
+                    app:tabSelectedTextColor="#fff"
+                    android:background="@color/colorPrimary"
                     android:layout_weight="0"
                     app:tabIndicatorColor="@color/cardview_light_background"
                     android:layout_width="match_parent"
@@ -138,10 +145,11 @@
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/profile_viewpager"
-                    android:background="#a6a6a6"
+                    android:background="@color/background"
                     android:layout_below="@+id/profile_tab"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:minHeight="100dp"
+                    android:layout_height="350dp"/>
 
             </LinearLayout>
 

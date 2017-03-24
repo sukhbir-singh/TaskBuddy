@@ -4,7 +4,7 @@
     android:title="Logout"
     android:id="@+id/action_logout"/>
     <item
-        android:showAsAction="always"
+        android:showAsAction="always|collapseActionView"
         android:icon="@drawable/search"
         android:title="Search"
         android:id="@+id/action_search"/>

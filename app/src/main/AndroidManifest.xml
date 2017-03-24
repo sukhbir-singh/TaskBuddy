@@ -42,7 +42,6 @@
         </activity>
 
         <activity
-            android:theme="@style/AppTheme"
             android:name=".Activities.UploadPostActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
