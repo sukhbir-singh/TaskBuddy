@@ -1,10 +1,13 @@
 package in.coders.fsociety.taskbuddy.Activities;
 
+import android.graphics.Bitmap;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.google.gson.Gson;
 
 import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment;
@@ -150,7 +154,17 @@ public class ProfileActivity extends AppCompatActivity{
 
                 if(model!=null&&response.isSuccess()){
                     user_details.setVisibility(View.VISIBLE);
-                    Glide.with(ProfileActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
+
+                    Glide.with(ProfileActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.person_icon)
+                            .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(img) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(),resource);
+                            drawable.setCircular(true);
+                            img.setImageDrawable(drawable);
+                        }
+                    });
 
                     if(model.getBio()!=null){
                         bio.setText("Email: "+model.getEmail()+"\n"+model.getBio());

@@ -1,9 +1,12 @@
 package in.coders.fsociety.taskbuddy.Activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 
@@ -167,7 +171,18 @@ public class MainActivity extends AppCompatActivity {
 
                 if(model!=null&&response.isSuccess()){
                     linearProfile.setVisibility(View.VISIBLE);
-                    Glide.with(MainActivity.this).load(model.getPicUrl()).into(profile);
+                    //Glide.with(MainActivity.this).load(model.getPicUrl()).into(profile);
+
+                    Glide.with(MainActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.person_icon)
+                            .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(profile) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(getResources(),resource);
+                            drawable.setCircular(true);
+                            profile.setImageDrawable(drawable);
+                        }
+                    });
 
                     name.setText(model.getName()+"");
                     credits.setText("Credits: "+model.getCredit()+"");

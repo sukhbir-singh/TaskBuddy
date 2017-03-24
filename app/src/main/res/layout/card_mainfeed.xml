@@ -20,7 +20,7 @@
 
             <ImageView
                 android:layout_centerInParent="true"
-                android:id="@+id/profilePic"
+                android:id="@+id/mainfeed_profilePic"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
                 />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/mainfeed_username"
                 android:textSize="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
@@ -122,6 +122,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:textSize="14sp"
                 android:text="101 people working on this"
                 android:id="@+id/mainfeed_peoples_involved"

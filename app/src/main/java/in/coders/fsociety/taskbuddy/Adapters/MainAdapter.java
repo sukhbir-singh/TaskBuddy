@@ -45,7 +45,6 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
                 //holder.username.setText(arrayList.get(position).getAuthorName()+"");
 
                 holder.post_peoples_involved.setText("No of people interested: "+arrayList.get(position).getNoOfParticipant()+"");
-                holder.button.setVisibility(View.GONE);
 
                 String tags_text="";
                 for(int i=0;i<arrayList.get(position).getTags().size();i++){
@@ -91,12 +90,12 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
 
         public ViewHolder(View v){
             super(v);
-            this.profilePic = (ImageView)v.findViewById(R.id.profilePic);
-            this.username = (TextView)v.findViewById(R.id.username);
+            this.profilePic = (ImageView)v.findViewById(R.id.mainfeed_profilePic);
+            this.username = (TextView)v.findViewById(R.id.mainfeed_username);
             this.tags = (TextView)v.findViewById(R.id.mainfeed_tags);
             this.title = (TextView)v.findViewById(R.id.mainfeed_title);
             this.description = (TextView)v.findViewById(R.id.mainfeed_description);
-            this.credits = (TextView)v.findViewById(R.id.main_credits);
+            this.credits = (TextView)v.findViewById(R.id.mainfeed_credits);
             this.post_peoples_involved = (TextView)v.findViewById(R.id.mainfeed_peoples_involved);
             this.button=(Button)v.findViewById(R.id.wanted_to_work);
             this.circle_name = (TextView)v.findViewById(R.id.mainfeed_circles);

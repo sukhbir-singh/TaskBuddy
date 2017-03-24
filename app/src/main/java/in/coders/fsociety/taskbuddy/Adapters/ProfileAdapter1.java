@@ -1,6 +1,9 @@
 package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +12,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 
 import java.util.ArrayList;
 
+import in.coders.fsociety.taskbuddy.Activities.MainActivity;
 import in.coders.fsociety.taskbuddy.Models.SingleProfilePost;
 import in.coders.fsociety.taskbuddy.R;
 
@@ -33,7 +39,7 @@ public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         if(arrayList!=null){
 
             if(arrayList.get(position).getTitle()!=null){
@@ -52,7 +58,20 @@ public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHo
                 if(tags_text.length()>=2)
                 holder.tags.setText(tags_text);
 
-                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+                //Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl())
+                        .asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(R.drawable.person_icon)
+                        .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(holder.profilePic) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(),resource);
+                        drawable.setCircular(true);
+                        holder.profilePic.setImageDrawable(drawable);
+                    }
+                });
+
+
             }
         }
     }
