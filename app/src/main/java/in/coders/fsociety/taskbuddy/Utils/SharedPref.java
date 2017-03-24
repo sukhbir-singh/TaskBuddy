@@ -13,7 +13,6 @@ public class SharedPref{
 
         private static final String PREF_NAME="UserInfo";
         private static final String LOGIN_STATUS="loginstatus";
-        private static final String SKIP_STATUS="skipstatus";
         private static final String USER_ID="apikey";
 
         public SharedPref(Context context){
@@ -28,15 +27,6 @@ public class SharedPref{
 
         public boolean getLoginStatus(){
             return sharedPreferences.getBoolean(LOGIN_STATUS,false);
-        }
-
-        public void setSkipStatus(boolean isSkip){
-            editor.putBoolean(SKIP_STATUS,isSkip);
-            editor.commit();
-        }
-
-        public boolean getSkipStatus(){
-            return sharedPreferences.getBoolean(SKIP_STATUS,false);
         }
 
         public void setUserId(String userId){
