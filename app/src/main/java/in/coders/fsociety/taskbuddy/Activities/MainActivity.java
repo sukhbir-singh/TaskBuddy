@@ -5,8 +5,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = new SharedPref(this);
 
         Log.v("Login Status:",sharedPref.getLoginStatus()+"");
-        Log.v("Skip Status:",sharedPref.getSkipStatus()+"");
         Log.v("UserId:",sharedPref.getUserId()+"");
 
-        if (!sharedPref.getLoginStatus() && !sharedPref.getSkipStatus()) {
+        if (!sharedPref.getLoginStatus()) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         }
@@ -100,9 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(sharedPref.getSkipStatus())
-            getMenuInflater().inflate(R.menu.main_rightskipmenu,menu);
-        else
             getMenuInflater().inflate(R.menu.main_rightloginmenu,menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -122,7 +121,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if(id==R.id.action_search){
-            startActivity(new Intent(MainActivity.this,SearchActivity.class));
+            startActivity(new Intent(MainActivity.this,SearchActivity.class)); }
+        else if(id == R.id.about_app){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle("About App");
+            alertDialog.setMessage("\nAn Android App build primarily for the service of \n'The Common Man'\n\ndeveloped by FSociety Coders (Team from NIT Hamirpur) \n\n@ Hack In The North 2.0\n\n");
+            alertDialog.setIcon(R.mipmap.taskbuddyicon);
+            alertDialog.show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -191,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Some error occurs",Toast.LENGTH_SHORT).show();
 
                 }
-
             }
 
             @Override
