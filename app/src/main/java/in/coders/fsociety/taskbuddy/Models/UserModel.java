@@ -2,10 +2,6 @@ package in.coders.fsociety.taskbuddy.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by root on 24/3/17.
- */
-
 public class UserModel {
    /*
       "bio": null,

@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-/**
- * Created by root on 24/3/17.
- */
-
 public class ProfilePostModel {
     /*
 
@@ -31,6 +27,9 @@ public class ProfilePostModel {
   "success": true
 
     */
+
+    public ProfilePostModel() {
+    }
 
     @SerializedName("success")
     private boolean success;

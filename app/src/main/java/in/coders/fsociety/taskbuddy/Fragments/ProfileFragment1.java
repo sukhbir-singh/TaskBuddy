@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.Util;
@@ -21,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment1 extends Fragment {
 
     private Context context;
     private ProgressBar bar;
@@ -45,8 +46,8 @@ public class ProfileFragment extends Fragment {
         this.context = context;
     }
 
-   public static ProfileFragment getInstance(Context context,int type){
-       ProfileFragment fragment=new ProfileFragment();
+   public static ProfileFragment1 getInstance(Context context, int type){
+       ProfileFragment1 fragment=new ProfileFragment1();
        fragment.setContext(context);
        fragment.setType(type);
 
@@ -59,9 +60,11 @@ public class ProfileFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_recycler,container,false);
 
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler);
+        bar=(ProgressBar)view.findViewById(R.id.bar);
 
         if(type==1){
             view.setBackgroundColor(Color.parseColor("#12f23a"));
+            getAllPosts("847596855g3");
         }else if(type==2){
             view.setBackgroundColor(Color.parseColor("#fff23a"));
         }else{
@@ -83,9 +86,13 @@ public class ProfileFragment extends Fragment {
                 ProfilePostModel r=response.body();
 
                 if(r!=null&&response.isSuccess()){
+                    ProfileAdapter1 adapter1=new ProfileAdapter1(context, r.getPosts());
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-                    Log.d("size",""+r.getPosts().size());
-                    //adapter.setList(r.getGetAllMeal());
+                    recyclerView.setAdapter(adapter1);
+
+                    Log.d("profile fragment size",""+r.getPosts().size());
+
 
                     bar.setVisibility(View.GONE);
                 }

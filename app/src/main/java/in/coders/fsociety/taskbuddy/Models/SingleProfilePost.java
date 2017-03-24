@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-/**
- * Created by root on 24/3/17.
- */
-
 public class SingleProfilePost {
     /*
       {
@@ -113,5 +109,24 @@ public class SingleProfilePost {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getAuthorPicUrl() {
+        return authorPicUrl;
+    }
+
+    public void setAuthorPicUrl(String authorPicUrl) {
+        this.authorPicUrl = authorPicUrl;
+    }
+
+    public SingleProfilePost() {
     }
 }

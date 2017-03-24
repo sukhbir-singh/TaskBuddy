@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
-import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment;
+import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment1;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.Util;
@@ -117,13 +117,13 @@ public class ProfileActivity extends AppCompatActivity{
             Fragment fragment=null;
 
             switch (position){
-                case 0: fragment= ProfileFragment.getInstance(ProfileActivity.this,1);
+                case 0: fragment= ProfileFragment1.getInstance(ProfileActivity.this,1);
                     break;
-                case 1: fragment=ProfileFragment.getInstance(ProfileActivity.this,2);
+                case 1: fragment= ProfileFragment1.getInstance(ProfileActivity.this,2);
                     break;
-                case 2: fragment=ProfileFragment.getInstance(ProfileActivity.this,3);
+                case 2: fragment= ProfileFragment1.getInstance(ProfileActivity.this,3);
                     break;
-                default:fragment=ProfileFragment.getInstance(ProfileActivity.this,1);
+                default:fragment= ProfileFragment1.getInstance(ProfileActivity.this,1);
             }
 
             return fragment;
@@ -153,9 +153,9 @@ public class ProfileActivity extends AppCompatActivity{
                     Glide.with(ProfileActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
 
                     if(model.getBio()!=null){
-                        bio.setText(model.getEmail()+"\n"+model.getBio());
+                        bio.setText("Email: "+model.getEmail()+"\n"+model.getBio());
                     }else{
-                        bio.setText(model.getEmail());
+                        bio.setText("Email: "+model.getEmail());
                     }
 
                     getSupportActionBar().setTitle(model.getName());
@@ -163,13 +163,13 @@ public class ProfileActivity extends AppCompatActivity{
                     if(model.getFriendCount()==0){
                         friends.setText("No friends yet");
                     }else{
-                        friends.setText(model.getFriendCount()+"");
+                        friends.setText("Friends: "+model.getFriendCount()+"");
                     }
 
                     if(model.getCircleCount()==0){
                         circles.setText("Not a part of any circle");
                     }else{
-                        circles.setText(model.getCircleCount()+"");
+                        circles.setText("Circles: "+model.getCircleCount()+"");
                     }
 
                 }else{
