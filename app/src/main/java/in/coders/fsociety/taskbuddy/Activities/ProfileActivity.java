@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import in.coders.fsociety.taskbuddy.Fragments.ProfileFragment;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.R;
+import in.coders.fsociety.taskbuddy.Utils.SharedPref;
 import in.coders.fsociety.taskbuddy.Utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity{
 
         getSupportActionBar().setTitle("Profile");
 
-        getResponse("847596855g3");
+        getResponse(new SharedPref(this).getUserId());
 
         Log.v("profile","ok");
 

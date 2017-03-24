@@ -11,19 +11,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:id="@+id/linear"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_above="@+id/ivAppLogo"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:text="TaskBuddy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <ImageView
+            android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:id="@+id/ivAppLogo"
             android:layout_width="180dp"
-            android:layout_height="240dp"
+            android:layout_height="180dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/taskbuddyiconbig"/>
 
+        </LinearLayout>
+
         <ProgressBar
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/ivAppLogo"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/linear"
             android:id="@+id/pbLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +54,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/ivAppLogo"
+            android:layout_below="@id/linear"
             android:layout_marginTop="10dp"
             android:paddingTop="16dp"
             android:textSize="16dp" />

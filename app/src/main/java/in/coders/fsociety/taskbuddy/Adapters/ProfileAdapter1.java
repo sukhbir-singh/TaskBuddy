@@ -57,7 +57,6 @@ public class ProfileAdapter1 extends RecyclerView.Adapter<ProfileAdapter1.ViewHo
                 if(tags_text.length()>=2)
                 holder.tags.setText(tags_text);
 
-                //Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
                 Glide.with(context).load(arrayList.get(position).getAuthorPicUrl())
                         .asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.person_icon)

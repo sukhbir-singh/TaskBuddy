@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getProfile("847596855g3");
-        getAllPosts("847596855g3");
+        getProfile(sharedPref.getUserId());
+        getAllPosts(sharedPref.getUserId());
 
     }
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     linearProfile.setVisibility(View.VISIBLE);
                     //Glide.with(MainActivity.this).load(model.getPicUrl()).into(profile);
 
-                    Glide.with(MainActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    Glide.with(getApplicationContext()).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(R.drawable.person_icon)
                             .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(profile) {
                         @Override

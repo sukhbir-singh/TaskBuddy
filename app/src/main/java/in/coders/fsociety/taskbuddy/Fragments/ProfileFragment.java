@@ -18,6 +18,7 @@ import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
 import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter2;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.R;
+import in.coders.fsociety.taskbuddy.Utils.SharedPref;
 import in.coders.fsociety.taskbuddy.Utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +30,11 @@ public class ProfileFragment extends Fragment {
     private ProgressBar bar;
     private int type=1;
     private RecyclerView recyclerView;
+    private SharedPref sharedPref;
+
+    public void setSharedPref(SharedPref sharedPref) {
+        this.sharedPref = sharedPref;
+    }
 
     public int getType() {
         return type;
@@ -51,6 +57,8 @@ public class ProfileFragment extends Fragment {
        ProfileFragment fragment=new ProfileFragment();
        fragment.setContext(context);
        fragment.setType(type);
+       fragment.setContext(context);
+       fragment.setSharedPref(new SharedPref(context));
 
        return fragment;
    }
@@ -65,15 +73,15 @@ public class ProfileFragment extends Fragment {
 
         if(type==1){
             view.setBackgroundColor(Color.parseColor("#12f23a"));
-            getAllPosts("847596855g3");
+            getAllPosts(sharedPref.getUserId());
 
         }else if(type==2){
             view.setBackgroundColor(Color.parseColor("#fff23a"));
-            getAllWorks("847596855g3");
+            getAllWorks(sharedPref.getUserId());
 
         }else{
             view.setBackgroundColor(Color.parseColor("#f21f3a"));
-            getAllCircles("847596855g3");
+            getAllCircles(sharedPref.getUserId());
 
         }
 
