@@ -155,7 +155,7 @@ public class ProfileActivity extends AppCompatActivity{
                 if(model!=null&&response.isSuccess()){
                     user_details.setVisibility(View.VISIBLE);
 
-                    Glide.with(ProfileActivity.this).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    Glide.with(getApplicationContext()).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(R.drawable.person_icon)
                             .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(img) {
                         @Override

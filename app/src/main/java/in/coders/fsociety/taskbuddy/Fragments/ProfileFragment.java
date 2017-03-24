@@ -99,7 +99,6 @@ public class ProfileFragment extends Fragment {
 
                     Log.d("profile fragment size",""+r.getPosts().size());
 
-
                     bar.setVisibility(View.GONE);
                 }
                 else {

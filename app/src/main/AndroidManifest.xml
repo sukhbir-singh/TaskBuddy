@@ -41,9 +41,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".Activities.UploadPostActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
+        </activity>
 
-
-        <activity android:name=".Activities.UploadPostActivity" />
         <activity android:name=".Activities.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
