@@ -17,4 +17,11 @@ public interface ApiInterface {
             , @Field("tags") String tag, @Field("picPostUrl") String picPostUrl,@Field("isPublic") String isPublic  ,@Field("authorId") String authorid ,
                                             @Field("circlesId") String circlesId);
 
+    @POST("user")
+    @FormUrlEncoded
+    Call<in.coders.fsociety.taskbuddy.Fragments.LoginFragment.UserSentResponse> sendUserData(@Field("name")String name,
+                                                                                             @Field("id")String id,
+                                                                                             @Field("picUrl")String picUrl,
+                                                                                             @Field("email")String email);
+
 }
