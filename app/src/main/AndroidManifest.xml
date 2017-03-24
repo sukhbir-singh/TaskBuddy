@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Upload_post"></activity>
+        <activity android:name=".UploadPost"></activity>
 
         <activity android:name=".ProfileActivity">
             <meta-data

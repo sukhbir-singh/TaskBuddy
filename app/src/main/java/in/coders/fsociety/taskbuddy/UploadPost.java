@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class Upload_post extends AppCompatActivity {
+public class UploadPost extends AppCompatActivity {
 
     EditText title, description, credit, tag;
     Button upload;
