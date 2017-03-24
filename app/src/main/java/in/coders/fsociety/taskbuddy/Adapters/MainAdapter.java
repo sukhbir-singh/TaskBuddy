@@ -38,7 +38,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             if(arrayList.get(position).getTitle()!=null){
                 holder.title.setText(arrayList.get(position).getTitle());
                 holder.description.setText(arrayList.get(position).getDescription());
-                holder.credits.setText("Credits: "+arrayList.get(position).getCredit()+"");
+                holder.credits.setText(arrayList.get(position).getCredit()+"");
 
                 //holder.username.setText(arrayList.get(position).getAuthorName()+"");
 
