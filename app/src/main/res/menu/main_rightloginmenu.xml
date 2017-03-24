@@ -8,4 +8,7 @@
         android:icon="@drawable/search"
         android:title="Search"
         android:id="@+id/action_search"/>
+    <item
+        android:title="About App"
+        android:id="@+id/about_app" />
 </menu>

@@ -37,7 +37,6 @@ import retrofit2.Response;
 public class LoginFragment extends Fragment {
 
     private LoginButton btnLogin;
-    private TextView tvSkip;
     private SharedPref sharedPref;
     private ArrayList<String> permissions;
     private CallbackManager callbackManager;
@@ -67,16 +66,6 @@ public class LoginFragment extends Fragment {
         btnLogin = (LoginButton)view.findViewById(R.id.btnLogin);
         pbLogin = (ProgressBar)view.findViewById(R.id.pbLogin);
         btnLogin.setFragment(this);
-
-        tvSkip = (TextView)view.findViewById(R.id.tvSkip);
-
-        tvSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharedPref.setSkipStatus(true);
-                getActivity().startActivity(new Intent(getActivity(),MainActivity.class));
-            }
-        });
 
         permissions = new ArrayList<>();
         permissions.add("email");
@@ -129,10 +118,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onCancel() {
-                sharedPref.setSkipStatus(true);
                 sharedPref.setLoginStatus(false);
-                getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
-                getActivity().finish();
             }
 
             @Override
@@ -157,7 +143,6 @@ public class LoginFragment extends Fragment {
                     Log.v("Message",userSentResponse.getMessage()+"");
                     Log.v("Success",userSentResponse.getSuccess()+"");
                     sharedPref.setLoginStatus(true);
-                    sharedPref.setSkipStatus(false);// as user has login succesfully and we make sure  that screen does not come again
                     sharedPref.setUserId(id);
 
                     pbLogin.setVisibility(View.GONE);
