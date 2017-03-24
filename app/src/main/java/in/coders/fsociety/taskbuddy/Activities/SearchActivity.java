@@ -1,9 +1,6 @@
 package in.coders.fsociety.taskbuddy.Activities;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import in.coders.fsociety.taskbuddy.Adapter.SearchAdapter;
+import in.coders.fsociety.taskbuddy.Adapters.SearchAdapter;
 import in.coders.fsociety.taskbuddy.Fragments.PersonFragment;
 import in.coders.fsociety.taskbuddy.Fragments.PostFragment;
 import in.coders.fsociety.taskbuddy.Models.SearchResponse;

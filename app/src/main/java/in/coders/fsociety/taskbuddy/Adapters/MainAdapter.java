@@ -9,14 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 import in.coders.fsociety.taskbuddy.Models.SingleMainPost;
 import in.coders.fsociety.taskbuddy.R;
 
-public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbuddy.Adapters.MainAdapter.ViewHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     ArrayList<SingleMainPost> arrayList=new ArrayList<>();
     Context context;
@@ -27,14 +25,14 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
     }
 
     @Override
-    public in.coders.fsociety.taskbuddy.Adapters.MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_mainfeed,parent,false);
-        in.coders.fsociety.taskbuddy.Adapters.MainAdapter.ViewHolder view_holder = new in.coders.fsociety.taskbuddy.Adapters.MainAdapter.ViewHolder(view);
+        MainAdapter.ViewHolder view_holder = new MainAdapter.ViewHolder(view);
         return view_holder;
     }
 
     @Override
-    public void onBindViewHolder(in.coders.fsociety.taskbuddy.Adapters.MainAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
         if(arrayList!=null){
 
             if(arrayList.get(position).getTitle()!=null){

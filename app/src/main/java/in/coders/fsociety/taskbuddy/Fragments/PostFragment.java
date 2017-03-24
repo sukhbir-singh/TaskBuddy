@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import in.coders.fsociety.taskbuddy.Adapter.PostRecyclerAdapter;
+import in.coders.fsociety.taskbuddy.Adapters.PostRecyclerAdapter;
 import in.coders.fsociety.taskbuddy.Models.SingleProfilePost;
 import in.coders.fsociety.taskbuddy.R;
 

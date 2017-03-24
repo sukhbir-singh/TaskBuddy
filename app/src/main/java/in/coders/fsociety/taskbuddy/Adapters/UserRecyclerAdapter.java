@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy.Adapter;
+package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

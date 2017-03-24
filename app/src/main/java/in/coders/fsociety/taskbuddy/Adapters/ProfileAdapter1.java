@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy.Adapter;
+package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,6 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 
 import java.util.ArrayList;
 
-import in.coders.fsociety.taskbuddy.Activities.MainActivity;
 import in.coders.fsociety.taskbuddy.Models.SingleProfilePost;
 import in.coders.fsociety.taskbuddy.R;
 

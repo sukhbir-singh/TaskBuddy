@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -29,9 +28,7 @@ import com.facebook.login.LoginManager;
 import com.google.gson.Gson;
 
 import in.coders.fsociety.taskbuddy.Adapters.MainAdapter;
-import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
 import in.coders.fsociety.taskbuddy.Models.MainPostModel;
-import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.SharedPref;
