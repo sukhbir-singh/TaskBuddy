@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy;
+package in.coders.fsociety.taskbuddy.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.cloudinary.android.Utils;
 import com.google.gson.annotations.SerializedName;
 
+import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.SharedPref;
 import in.coders.fsociety.taskbuddy.Utils.Util;
 import retrofit2.Call;

@@ -15,7 +15,7 @@ public class Util {
         oBuilder.connectTimeout(15l, TimeUnit.SECONDS);
         oBuilder.readTimeout(15l,TimeUnit.SECONDS);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://taskbuddy.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://taskbuddy.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).
                 client(oBuilder.build()).
                 build();
 

@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import in.coders.fsociety.taskbuddy.MainActivity;
+import in.coders.fsociety.taskbuddy.Activities.MainActivity;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.SharedPref;
 import in.coders.fsociety.taskbuddy.Utils.Util;

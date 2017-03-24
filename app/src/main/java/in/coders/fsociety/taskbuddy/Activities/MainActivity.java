@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy;
+package in.coders.fsociety.taskbuddy.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.facebook.login.LoginManager;
 
-import in.coders.fsociety.taskbuddy.Activities.LoginActivity;
+import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.SharedPref;
 
 public class MainActivity extends AppCompatActivity {

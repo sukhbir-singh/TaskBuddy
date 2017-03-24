@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy;
+package in.coders.fsociety.taskbuddy.Fragments;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,11 +8,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
+import in.coders.fsociety.taskbuddy.R;
+import in.coders.fsociety.taskbuddy.Utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +26,7 @@ public class ProfileFragment extends Fragment {
     private Context context;
     private ProgressBar bar;
     private int type=1;
+    private RecyclerView recyclerView;
 
     public int getType() {
         return type;
@@ -53,7 +58,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_recycler,container,false);
 
-        RecyclerView recyclerView=(RecyclerView)view.findViewById(R.id.recycler);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recycler);
 
         if(type==1){
             view.setBackgroundColor(Color.parseColor("#12f23a"));
@@ -67,6 +72,33 @@ public class ProfileFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
 
         return view;
+    }
+
+
+    private void  getAllPosts(String id){
+        Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
+        call.enqueue(new Callback<ProfilePostModel>() {
+            @Override
+            public void onResponse(Call<ProfilePostModel> call, Response<ProfilePostModel> response) {
+                ProfilePostModel r=response.body();
+
+                if(r!=null&&response.isSuccess()){
+
+                    Log.d("size",""+r.getPosts().size());
+                    //adapter.setList(r.getGetAllMeal());
+
+                    bar.setVisibility(View.GONE);
+                }
+                else {
+                    bar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfilePostModel> call, Throwable t) {
+                bar.setVisibility(View.GONE);
+            }
+        });
     }
 
 }

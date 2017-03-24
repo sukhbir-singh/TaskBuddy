@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -41,12 +41,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".UploadPost"></activity>
-        
-        <activity android:name=".ProfileActivity">
+        <activity android:name=".Activities.UploadPost"></activity>
+
+        <activity android:name=".Activities.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <activity android:name=".Activities.LoginActivity"></activity>

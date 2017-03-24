@@ -5,18 +5,18 @@
     android:elevation="4dp"
     android:layout_margin="4dp"
     android:layout_width="match_parent"
-    android:layout_height="420px">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="100dp"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_centerInParent="true"
@@ -29,6 +29,7 @@
                 />
 
             <TextView
+                android:id="@+id/username"
                 android:textSize="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
@@ -47,12 +48,19 @@
             android:orientation="vertical"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:textSize="20sp"
                 android:text="Title"
                 android:id="@+id/post_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:text="Description"
+                android:id="@+id/post_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -73,6 +81,7 @@
                 <TextView
                     android:textSize="16sp"
                     android:text="24 Mar 17"
+                    android:visibility="gone"
                     android:id="@+id/post_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -88,6 +97,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/wanted_to_work"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:text="Wanted to work"
