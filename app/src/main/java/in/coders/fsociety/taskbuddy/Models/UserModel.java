@@ -6,6 +6,7 @@ public class UserModel {
    /*
       "bio": null,
       "circleCount": 0,
+      "credit": 100,
       "email": "apc.ss@gmail.com",
       "friendCount": 0,
       "id": "847596855g3",
@@ -14,6 +15,8 @@ public class UserModel {
       "success": true
    */
 
+    @SerializedName("credit")
+    private int credit;
     @SerializedName("bio")
     private String bio;
     @SerializedName("circleCount")
@@ -34,15 +37,12 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String bio, int circleCount, String email, int friendCount, String id, String name, String picUrl, boolean success) {
-        this.bio = bio;
-        this.circleCount = circleCount;
-        this.email = email;
-        this.friendCount = friendCount;
-        this.id = id;
-        this.name = name;
-        this.picUrl = picUrl;
-        this.success = success;
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public String getBio() {
