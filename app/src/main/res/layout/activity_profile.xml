@@ -149,7 +149,7 @@
                     android:layout_below="@+id/profile_tab"
                     android:layout_width="match_parent"
                     android:minHeight="100dp"
-                    android:layout_height="350dp"/>
+                    android:layout_height="330dp"/>
 
             </LinearLayout>
 

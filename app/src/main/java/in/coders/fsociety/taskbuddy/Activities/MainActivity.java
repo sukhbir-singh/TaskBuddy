@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         else if(id == R.id.about_app){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
             alertDialog.setTitle("About App");
-            alertDialog.setMessage("\nAn Android App build primarily for the service of \n'The Common Man'\n\ndeveloped by FSociety Coders (Team from NIT Hamirpur) \n\n@ Hack In The North 2.0\n\n");
+            alertDialog.setMessage(R.string.about_app);
             alertDialog.setIcon(R.mipmap.taskbuddyicon);
             alertDialog.show();
             return true;

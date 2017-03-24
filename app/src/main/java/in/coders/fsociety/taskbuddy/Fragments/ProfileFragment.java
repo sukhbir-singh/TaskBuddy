@@ -77,11 +77,15 @@ public class ProfileFragment extends Fragment {
 
         }else if(type==2){
             view.setBackgroundColor(Color.parseColor("#fffded"));
-            getAllWorks(sharedPref.getUserId());
+            //getAllWorks(sharedPref.getUserId());
+
+            bar.setVisibility(View.GONE);
 
         }else{
             view.setBackgroundColor(Color.parseColor("#fdeaed"));
-            getAllCircles(sharedPref.getUserId());
+            //getAllCircles(sharedPref.getUserId());
+
+            bar.setVisibility(View.GONE);
 
         }
 

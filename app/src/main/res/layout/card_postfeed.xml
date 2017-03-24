@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="#eaeaea"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_marginTop="16dp"
                 android:layout_centerInParent="true"
                 android:id="@+id/profilePic"
                 android:layout_width="50dp"
@@ -46,18 +48,24 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:padding="4dp"
                 android:textSize="20sp"
                 android:text="Title"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:id="@+id/post_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
                 android:textSize="16sp"
                 android:text="Description"
                 android:id="@+id/post_description"
@@ -65,51 +73,63 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:textSize="14sp"
                 android:text="Tags"
+                android:textColor="@color/colorAccent"
+                android:textStyle="italic"
                 android:id="@+id/post_tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_weight="1"
-                    android:textSize="16sp"
-                    android:text="20 Credits"
-                    android:id="@+id/post_credits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:textSize="16sp"
-                    android:text="24 Mar 17"
-                    android:visibility="gone"
-                    android:id="@+id/post_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
             <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:textSize="14sp"
                 android:text="101 people working on this"
                 android:id="@+id/post_peoples_involved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <Button
-                android:id="@+id/wanted_to_work"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:text="Wanted to work"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:paddingBottom="4dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/virtual_money_opt"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:text="203"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:id="@+id/post_credits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/wanted_to_work"
+                    android:layout_gravity="center_horizontal|right"
+                    android:layout_margin="5dp"
+                    android:text="Wants to work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
