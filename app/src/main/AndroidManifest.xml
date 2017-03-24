@@ -41,15 +41,24 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activities.UploadPost"></activity>
 
+
+        <activity android:name=".Activities.UploadPostActivity" />
         <activity android:name=".Activities.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MainActivity" />
         </activity>
-
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.LoginActivity" />
+        <activity
+            android:name=".Activities.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".Activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.coders.fsociety.taskbuddy.Activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

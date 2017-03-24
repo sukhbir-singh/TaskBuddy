@@ -1,4 +1,4 @@
-package in.coders.fsociety.taskbuddy.Adapters;
+package in.coders.fsociety.taskbuddy.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

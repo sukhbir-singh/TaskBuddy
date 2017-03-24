@@ -20,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UploadPost extends AppCompatActivity {
+public class UploadPostActivity extends AppCompatActivity {
 
     EditText title, description, credit, tag;
     Button upload;

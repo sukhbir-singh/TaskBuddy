@@ -3,4 +3,9 @@
     <item
     android:title="Logout"
     android:id="@+id/action_logout"/>
+    <item
+        android:showAsAction="always"
+        android:icon="@drawable/search"
+        android:title="Search"
+        android:id="@+id/action_search"/>
 </menu>
