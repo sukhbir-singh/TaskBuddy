@@ -1,12 +1,15 @@
 package in.coders.fsociety.taskbuddy.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by root on 24/3/17.
  */
 
-public class UserModel {
+public class UserModel implements Parcelable {
    /*
       "bio": null,
       "circleCount": 0,
@@ -35,6 +38,9 @@ public class UserModel {
     @SerializedName("success")
     private boolean success;
 
+    @SerializedName("credit")
+    private int credit;
+
     public UserModel() {
     }
 
@@ -47,6 +53,64 @@ public class UserModel {
         this.name = name;
         this.picUrl = picUrl;
         this.success = success;
+    }
+
+    public UserModel(String bio, int credit, String name, String picUrl, String id) {
+        this.bio = bio;
+        this.credit = credit;
+        this.name = name;
+        this.picUrl = picUrl;
+        this.id = id;
+    }
+
+    protected UserModel(Parcel in) {
+        bio = in.readString();
+        circleCount = in.readInt();
+        email = in.readString();
+        friendCount = in.readInt();
+        id = in.readString();
+        name = in.readString();
+        picUrl = in.readString();
+        success = in.readByte() != 0;
+        credit = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(bio);
+        dest.writeInt(circleCount);
+        dest.writeString(email);
+        dest.writeInt(friendCount);
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(picUrl);
+        dest.writeByte((byte) (success ? 1 : 0));
+        dest.writeInt(credit);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
+        }
+
+        @Override
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
+        }
+    };
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public String getBio() {

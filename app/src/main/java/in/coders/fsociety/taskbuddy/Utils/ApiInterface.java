@@ -1,14 +1,17 @@
 package in.coders.fsociety.taskbuddy.Utils;
 
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
+import in.coders.fsociety.taskbuddy.Models.SearchResponse;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
-import in.coders.fsociety.taskbuddy.Activities.UploadPost;
+
+import in.coders.fsociety.taskbuddy.Activities.UploadPostActivity;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface ApiInterface {
@@ -18,9 +21,11 @@ public interface ApiInterface {
 
     @POST("/post")
     @FormUrlEncoded
-    Call<UploadPost.Response1> sendPostData(@Field("title") String title, @Field("description") String description,
-            @Field("credit") int credit, @Field("tags") String tag, @Field("picPostUrl") String picPostUrl,
-            @Field("isPublic") String isPublic  , @Field("authorId") String authorid, @Field("circlesId") String circlesId);
+
+    Call<UploadPostActivity.Response1> sendPostData(@Field("title") String title, @Field("description") String description,
+                                                    @Field("credit") int credit
+            , @Field("tags") String tag, @Field("picPostUrl") String picPostUrl, @Field("isPublic") String isPublic  , @Field("authorId") String authorid ,
+                                                    @Field("circlesId") String circlesId);
 
     @POST("/user")
     @FormUrlEncoded
@@ -32,5 +37,8 @@ public interface ApiInterface {
 
     @GET("/profile/post/{id}")
     Call<ProfilePostModel> getProfilePosts(@Path("id") String id);
+
+    @GET("/search")
+    Call<SearchResponse> getSearchResult(@Query("userId") String userID,@Query("keyword") String keyword);
 
 }
