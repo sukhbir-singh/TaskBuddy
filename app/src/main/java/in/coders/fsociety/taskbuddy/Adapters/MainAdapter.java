@@ -41,7 +41,9 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
                 holder.title.setText(arrayList.get(position).getTitle());
                 holder.description.setText(arrayList.get(position).getDescription());
                 holder.credits.setText("Credits: "+arrayList.get(position).getCredit()+"");
-                holder.username.setText(arrayList.get(position).getAuthorName()+"");
+
+                //holder.username.setText(arrayList.get(position).getAuthorName()+"");
+
                 holder.post_peoples_involved.setText("No of people interested: "+arrayList.get(position).getNoOfParticipant()+"");
                 holder.button.setVisibility(View.GONE);
 
@@ -50,10 +52,28 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
                     tags_text=tags_text+"#"+arrayList.get(position).getTags().get(i)+" ";
                 }
 
+                if(arrayList.get(position).isPublic()==false){
+                    holder.circle_name.setVisibility(View.VISIBLE);
+
+                    String circles_text="";
+
+                    for(int i=0;i<arrayList.get(position).getCategoryTitle().size();i++){
+                        tags_text=circles_text+"#"+arrayList.get(position).getTags().get(i)+" ";
+                    }
+
+                    holder.circle_name.setText(circles_text+"");
+
+                }else{
+                    holder.circle_name.setVisibility(View.GONE);
+                }
+
                 if(tags_text.length()>=2)
                     holder.tags.setText(tags_text);
+                else holder.tags.setVisibility(View.GONE);
 
-                Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+                //Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+
+
             }
         }
     }
@@ -65,26 +85,21 @@ public class MainAdapter extends RecyclerView.Adapter<in.coders.fsociety.taskbud
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        private ArrayList<String> categoryTitle;
-        private int credit;
-        private TextView description;
-        private TextView noOfParticipant;
-        private boolean isPublic;
-        private boolean status;
-        private ArrayList<String> tags;
-        private String title;
+        private TextView username,description,title,credits,post_peoples_involved,tags,circle_name;
+        private ImageView profilePic;
+        private Button button;
 
         public ViewHolder(View v){
             super(v);
             this.profilePic = (ImageView)v.findViewById(R.id.profilePic);
             this.username = (TextView)v.findViewById(R.id.username);
-            this.tags = (TextView)v.findViewById(R.id.post_tags);
-            this.title = (TextView)v.findViewById(R.id.post_title);
-            this.description = (TextView)v.findViewById(R.id.post_description);
-            this.credits = (TextView)v.findViewById(R.id.post_credits);
-            this.username = (TextView)v.findViewById(R.id.username);
-            this.post_peoples_involved = (TextView)v.findViewById(R.id.post_peoples_involved);
+            this.tags = (TextView)v.findViewById(R.id.mainfeed_tags);
+            this.title = (TextView)v.findViewById(R.id.mainfeed_title);
+            this.description = (TextView)v.findViewById(R.id.mainfeed_description);
+            this.credits = (TextView)v.findViewById(R.id.main_credits);
+            this.post_peoples_involved = (TextView)v.findViewById(R.id.mainfeed_peoples_involved);
             this.button=(Button)v.findViewById(R.id.wanted_to_work);
+            this.circle_name = (TextView)v.findViewById(R.id.mainfeed_circles);
 
         }
     }
