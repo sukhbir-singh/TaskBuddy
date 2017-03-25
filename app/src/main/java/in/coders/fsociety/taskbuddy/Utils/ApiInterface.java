@@ -1,6 +1,7 @@
 package in.coders.fsociety.taskbuddy.Utils;
 
 import in.coders.fsociety.taskbuddy.Models.MainPostModel;
+import in.coders.fsociety.taskbuddy.Models.ProfileCircleResponse;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.Models.RegisterResponse;
 import in.coders.fsociety.taskbuddy.Models.SearchResponse;
@@ -55,4 +56,6 @@ public interface ApiInterface {
     @POST("/friend/new/{userId}")
     Call<RegisterResponse> addAsFriend(@Path("userId") String userId, @Field("friendId") String friendId);
 
-}
+
+  @GET("/profile/circles/{id}")
+    Call<ProfileCircleResponse> getCircleList(@Path("id") String id);}

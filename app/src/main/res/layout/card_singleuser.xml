@@ -57,6 +57,12 @@
                 android:text="Description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <Button
+                android:layout_marginLeft="25dp"
+                android:id="@+id/addAsFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add As Friend"/>
 
         </LinearLayout>
 

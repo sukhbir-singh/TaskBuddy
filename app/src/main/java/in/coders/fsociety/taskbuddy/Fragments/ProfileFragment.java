@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 
 import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter1;
 import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter2;
+import in.coders.fsociety.taskbuddy.Adapters.ProfileAdapter3;
+import in.coders.fsociety.taskbuddy.Models.ProfileCircleResponse;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
 import in.coders.fsociety.taskbuddy.R;
 import in.coders.fsociety.taskbuddy.Utils.SharedPref;
@@ -83,7 +85,7 @@ public class ProfileFragment extends Fragment {
 
         }else{
             view.setBackgroundColor(Color.parseColor("#fdeaed"));
-            //getAllCircles(sharedPref.getUserId());
+            getAllCircles(sharedPref.getUserId());
 
             bar.setVisibility(View.GONE);
 
@@ -158,31 +160,22 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getAllCircles(String id){
-        Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
-        call.enqueue(new Callback<ProfilePostModel>() {
+        Call<ProfileCircleResponse> call =Util.getRetrofitService().getCircleList(id);
+        call.enqueue(new Callback<ProfileCircleResponse>() {
             @Override
-            public void onResponse(Call<ProfilePostModel> call, Response<ProfilePostModel> response) {
-                ProfilePostModel r=response.body();
-
-                if(r!=null&&response.isSuccess()){
-                    ProfileAdapter1 adapter1=new ProfileAdapter1(context, r.getPosts());
+            public void onResponse(Call<ProfileCircleResponse> call, Response<ProfileCircleResponse> response) {
+                bar.setVisibility(View.GONE);
+                ProfileCircleResponse profileCircleResponse = response.body();
+                if(response.isSuccess()&&profileCircleResponse!=null){
+                    ProfileAdapter3 adapter3 = new ProfileAdapter3(profileCircleResponse.getCircleArrayList(),context);
                     recyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-                    recyclerView.setAdapter(adapter1);
-
-                    Log.d("profile circles size",""+r.getPosts().size());
-
-
-                    bar.setVisibility(View.GONE);
-                }
-                else {
-                    bar.setVisibility(View.GONE);
+                    recyclerView.setAdapter(adapter3);
                 }
             }
 
             @Override
-            public void onFailure(Call<ProfilePostModel> call, Throwable t) {
-                bar.setVisibility(View.GONE);
+            public void onFailure(Call<ProfileCircleResponse> call, Throwable t) {
+                 bar.setVisibility(View.GONE);
             }
         });
     }
