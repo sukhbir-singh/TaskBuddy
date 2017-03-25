@@ -1,7 +1,11 @@
 package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
-import android.support.v4.app.NotificationCompat;
+
+
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 
 import java.util.ArrayList;
 
@@ -48,6 +53,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
     @Override
     public void onBindViewHolder(final viewHolder holder, int position) {
         final SingleProfilePost post = list.get(position);
+
       if(post.getTitle()!=null){
           holder.titleView.setText(post.getTitle());
       }
@@ -61,9 +67,29 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
         if(post.getDescription()!=null){
             Log.d("tag",post.getDescription());
             holder.descriptionView.setText(post.getDescription());
+
+            String tags_text="";
+            for(int i=0;i<list.get(position).getTags().size();i++){
+                tags_text=tags_text+"#"+list.get(position).getTags().get(i)+" ";
+            }
+
+            if(tags_text.length()>=2)
+                holder.tags.setText(tags_text);
+
+            Glide.with(context).load(list.get(position).getAuthorPicUrl())
+                    .asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.person_icon)
+                    .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(holder.authorImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(),resource);
+                    drawable.setCircular(true);
+                    holder.authorImage.setImageDrawable(drawable);
+                }
+            });
+
         }
         holder.creditView.setText(""+post.getCredit());
-        holder.noOFWorkingView.setText(""+post.getNoOfParticipant());
         if(post.getUserProgress()!=0){
             holder.wantedToWork.setVisibility(View.GONE);
         }
@@ -89,6 +115,9 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
                 });
             }
         });
+        holder.noOFWorkingView.setText("No of people interested: "+list.get(position).getNoOfParticipant()+"");
+
+
     }
 
     @Override
@@ -98,7 +127,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
 
     public static  class viewHolder extends RecyclerView.ViewHolder{
         private ImageView authorImage;
-        private TextView authorNameView,titleView,descriptionView,creditView,noOFWorkingView;
+        private TextView authorNameView,titleView,descriptionView,creditView,noOFWorkingView,tags;
         private Button wantedToWork;
         public viewHolder(View itemView) {
             super(itemView);
@@ -107,6 +136,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
             titleView = (TextView) itemView.findViewById(R.id.post_title);
             descriptionView = (TextView) itemView.findViewById(R.id.post_description);
             creditView = (TextView) itemView.findViewById(R.id.post_credits);
+            tags = (TextView) itemView.findViewById(R.id.post_tags);
             noOFWorkingView = (TextView) itemView.findViewById(R.id.post_peoples_involved);
             wantedToWork = (Button) itemView.findViewById(R.id.wanted_to_work);
         }

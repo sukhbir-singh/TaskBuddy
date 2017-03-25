@@ -1,6 +1,9 @@
 package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.ImageViewTarget;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,8 @@ import in.coders.fsociety.taskbuddy.Utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by sahil on 24/3/17.
@@ -40,23 +46,38 @@ public class UserRecyclerAdapter  extends RecyclerView.Adapter<UserRecyclerAdapt
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_person,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_singleuser,parent,false);
         return new viewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final viewHolder holder, int position) {
+
          final UserModel u= list.get(position);
+
         if(u.getName()!=null){
-            holder.userNameTextView.setText(u.getName());
+            holder.cardName.setText(u.getName());
         }
+
         if(u.getBio()!=null){
-            holder.bioTextView.setText(u.getBio());
+            holder.cardDescription.setText(u.getBio());
+        }else{
+            holder.cardDescription.setVisibility(View.GONE);
         }
+
         if(u.getPicUrl()!=null){
-            Glide.with(context).load(u.getPicUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.userPic);
+            Glide.with(getApplicationContext()).load(u.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.person_icon)
+                    .error(R.drawable.person_icon).into(new ImageViewTarget<Bitmap>(holder.cardImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(),resource);
+                    drawable.setCircular(true);
+                    holder.cardImage.setImageDrawable(drawable);
+                }
+            });
         }
-        holder.creditTextView.setText(""+u.getCredit());
+
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +100,8 @@ public class UserRecyclerAdapter  extends RecyclerView.Adapter<UserRecyclerAdapt
             }
         });
 
+
+        holder.cardCredits.setText("Credits: "+u.getCredit());
     }
 
     @Override
@@ -87,16 +110,19 @@ public class UserRecyclerAdapter  extends RecyclerView.Adapter<UserRecyclerAdapt
     }
 
     public static  class viewHolder extends RecyclerView.ViewHolder{
-        private ImageView userPic;
-        private TextView userNameTextView,bioTextView,creditTextView;
+
+        private ImageView cardImage;
+        private TextView cardName,cardDescription,cardCredits;
         private Button button;
+
         public viewHolder(View itemView) {
             super(itemView);
-            userPic = (ImageView) itemView.findViewById(R.id.profilePic);
-            userNameTextView = (TextView) itemView.findViewById(R.id.username);
-            bioTextView = (TextView) itemView.findViewById(R.id.post_description);
-            creditTextView = (TextView) itemView.findViewById(R.id.post_credits);
+            cardImage = (ImageView) itemView.findViewById(R.id.card_image);
+            cardName = (TextView) itemView.findViewById(R.id.card_name);
+            cardDescription = (TextView) itemView.findViewById(R.id.card_description);
+            cardCredits = (TextView) itemView.findViewById(R.id.card_credits);
             button = (Button) itemView.findViewById(R.id.addAsFriend);
+
         }
     }
 }

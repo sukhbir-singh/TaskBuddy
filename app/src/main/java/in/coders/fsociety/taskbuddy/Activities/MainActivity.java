@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(model!=null&&response.isSuccess()){
                     linearProfile.setVisibility(View.VISIBLE);
-                    //Glide.with(MainActivity.this).load(model.getPicUrl()).into(profile);
 
                     Glide.with(getApplicationContext()).load(model.getPicUrl()).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .placeholder(R.drawable.person_icon)
