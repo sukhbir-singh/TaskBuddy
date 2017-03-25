@@ -97,6 +97,8 @@ public class ProfileFragment extends Fragment {
 
 
     private void  getAllPosts(String id){
+        bar.setVisibility(View.VISIBLE);
+
         Call<ProfilePostModel> call= Util.getRetrofitService().getProfilePosts(id);
         call.enqueue(new Callback<ProfilePostModel>() {
             @Override

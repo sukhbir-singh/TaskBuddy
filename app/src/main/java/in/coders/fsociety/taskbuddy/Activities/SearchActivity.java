@@ -30,9 +30,11 @@ private TabLayout tabLayout;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         progressBar = (ProgressBar) findViewById(R.id.progress);
@@ -70,13 +72,16 @@ private TabLayout tabLayout;
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 progressBar.setVisibility(View.GONE);
+
                 SearchResponse searchResponse=response.body();
                 if(response.isSuccess()&&searchResponse!=null){
                     adapter.reset();
                     tabLayout.setVisibility(View.VISIBLE);
+
                     adapter.addSlide(PostFragment.newInstance(searchResponse.getGetAllPosts()),"Posts");
                     adapter.addSlide(PersonFragment.newInstance(searchResponse.getGetAllUsers()),"Users");
                     adapter.addSlide(PostFragment.newInstance(searchResponse.getGetAllTagsPost()),"Tags");
+
                     viewPager.setAdapter(adapter);
                     tabLayout.setupWithViewPager(viewPager);
                 }

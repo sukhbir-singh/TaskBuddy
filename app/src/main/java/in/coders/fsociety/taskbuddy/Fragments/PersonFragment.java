@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class PersonFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<UserModel> list;
     private UserRecyclerAdapter adapter;
+
     public PersonFragment() {
         // Required empty public constructor
     }
@@ -38,15 +41,18 @@ public class PersonFragment extends Fragment {
             list=getArguments().getParcelableArrayList(USER_LIST);
         }
 
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View v=inflater.inflate(R.layout.fragment_recycler, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
+        ProgressBar bar=(ProgressBar)v.findViewById(R.id.bar);
+        bar.setVisibility(View.GONE);
+
+        Log.v("bar","hide");
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new UserRecyclerAdapter(list,getContext());
         recyclerView.setAdapter(adapter);

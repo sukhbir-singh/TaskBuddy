@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
+
             <android.support.v7.widget.SearchView
                 android:background="@android:color/transparent"
                 android:id="@+id/searchView"
@@ -26,11 +27,13 @@
                 android:imeOptions="actionSearch"/>
 
         </android.support.v7.widget.Toolbar>
+
 <android.support.design.widget.TabLayout
     android:visibility="gone"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/tabs"/>
+
     </android.support.design.widget.AppBarLayout>
 
     <include
