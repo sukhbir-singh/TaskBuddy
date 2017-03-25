@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView profile;
     TextView name,credits;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         bar=(ProgressBar) findViewById(R.id.bar);
 
         linearProfile=(LinearLayout)findViewById(R.id.main_linear_profile);
@@ -93,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getProfile(sharedPref.getUserId());
+                getAllPosts(sharedPref.getUserId());
+
+            }
+        });
         getProfile(sharedPref.getUserId());
         getAllPosts(sharedPref.getUserId());
 
@@ -152,12 +163,16 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("main size",""+r.getPosts().size());
 
                 }
-
+            if(swipeRefreshLayout.isRefreshing()){
+                swipeRefreshLayout.setRefreshing(false);
+            }
             }
 
             @Override
             public void onFailure(Call<MainPostModel> call, Throwable t) {
-
+                if(swipeRefreshLayout.isRefreshing()){
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -195,12 +210,19 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Some error occurs",Toast.LENGTH_SHORT).show();
 
                 }
+
+                if(swipeRefreshLayout.isRefreshing()){
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(MainActivity.this,"Please Check Internet Connection",Toast.LENGTH_SHORT).show();
+                if(swipeRefreshLayout.isRefreshing()){
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
