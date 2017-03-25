@@ -50,6 +50,9 @@ public class SingleMainPost {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("userProgress")
+    private int userProgress;
+
     public ArrayList<String> getCategoryTitle() {
         return categoryTitle;
     }
@@ -128,5 +131,13 @@ public class SingleMainPost {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getUserProgress() {
+        return userProgress;
+    }
+
+    public void setUserProgress(int userProgress) {
+        this.userProgress = userProgress;
     }
 }

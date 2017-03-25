@@ -2,6 +2,7 @@ package in.coders.fsociety.taskbuddy.Utils;
 
 import in.coders.fsociety.taskbuddy.Models.MainPostModel;
 import in.coders.fsociety.taskbuddy.Models.ProfilePostModel;
+import in.coders.fsociety.taskbuddy.Models.RegisterResponse;
 import in.coders.fsociety.taskbuddy.Models.SearchResponse;
 import in.coders.fsociety.taskbuddy.Models.UserModel;
 
@@ -44,5 +45,14 @@ public interface ApiInterface {
     Call<SearchResponse> getSearchResult(@Query("userId") String userID,@Query("keyword") String keyword);
     @GET("/main/post")
     Call<MainPostModel> getMainPosts(@Query("id") String id);
+
+    @FormUrlEncoded
+    @POST("/register")
+    Call<RegisterResponse> register(@Field("userId") String userId,@Field("postId") int postId);
+
+
+    @FormUrlEncoded
+    @POST("/friend/new/{userId}")
+    Call<RegisterResponse> addAsFriend(@Path("userId") String userId, @Field("friendId") String friendId);
 
 }

@@ -2,17 +2,25 @@ package in.coders.fsociety.taskbuddy.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import in.coders.fsociety.taskbuddy.Models.RegisterResponse;
 import in.coders.fsociety.taskbuddy.Models.SingleMainPost;
 import in.coders.fsociety.taskbuddy.R;
+import in.coders.fsociety.taskbuddy.Utils.SharedPref;
+import in.coders.fsociety.taskbuddy.Utils.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
@@ -32,7 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final MainAdapter.ViewHolder holder, final int position) {
         if(arrayList!=null){
 
             if(arrayList.get(position).getTitle()!=null){
@@ -68,9 +76,34 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                     holder.tags.setText(tags_text);
                 else holder.tags.setVisibility(View.GONE);
 
+
                 //Glide.with(context).load(arrayList.get(position).getAuthorPicUrl()).asBitmap().into(holder.profilePic);
+                 if(arrayList.get(position).getUserProgress()!=0){
+                     holder.button.setVisibility(View.GONE);
+                 }
 
+               holder.button.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Log.d("tag",""+arrayList.get(position).getId());
+                       Call<RegisterResponse> call = Util.getRetrofitService().register(new SharedPref(context).getUserId(),arrayList.get(position).getId());
+                       call.enqueue(new Callback<RegisterResponse>() {
+                           @Override
+                           public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                               RegisterResponse r = response.body();
+                               if(r!=null&&response.isSuccess()){
+                                   holder.button.setVisibility(View.GONE);
+                                   Toast.makeText(context,r.getMessage(),Toast.LENGTH_SHORT).show();
+                               }
+                           }
 
+                           @Override
+                           public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                                   t.printStackTrace();
+                           }
+                       });
+                   }
+               });
             }
         }
     }
