@@ -84,7 +84,12 @@
             </LinearLayout>
 
 
-
+         <Button
+             android:id="@+id/addAsFriend"
+             android:layout_gravity="center"
+             android:text="Add As Friend"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>

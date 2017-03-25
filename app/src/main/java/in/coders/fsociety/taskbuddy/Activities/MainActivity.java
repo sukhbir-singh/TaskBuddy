@@ -119,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else if(id==R.id.action_search){
-            startActivity(new Intent(MainActivity.this,SearchActivity.class)); }
+            startActivity(new Intent(MainActivity.this,SearchActivity.class));
+        return  true;}
         else if(id == R.id.about_app){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
             alertDialog.setTitle("About App");
