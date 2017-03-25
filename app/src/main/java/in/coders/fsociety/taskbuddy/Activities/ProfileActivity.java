@@ -36,6 +36,7 @@ import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity{
 
+    private CollapsingToolbarLayout t;
     private ImageView img;
     private ViewPager pager;
     private TabLayout tab;
@@ -56,6 +57,8 @@ public class ProfileActivity extends AppCompatActivity{
         img=(ImageView)findViewById(R.id.profilePic);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         bar=(ProgressBar)findViewById(R.id.progress_bar);
+
+        t= (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
 
         bio=(TextView)findViewById(R.id.profile_bio);
         circles=(TextView)findViewById(R.id.profile_circles);
@@ -165,6 +168,10 @@ public class ProfileActivity extends AppCompatActivity{
                             img.setImageDrawable(drawable);
                         }
                     });
+
+                    if(model.getName()!=null){
+                        t.setTitle(""+model.getName());
+                    }
 
                     if(model.getBio()!=null){
                         bio.setText("Email: "+model.getEmail()+"\n"+model.getBio());

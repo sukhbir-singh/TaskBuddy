@@ -4,18 +4,27 @@
     android:elevation="4dp"
     android:layout_margin="4dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
+            android:textSize="20sp"
+            android:text="title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/circleTitle"/>
+
         <TextView
+            android:textSize="16dp"
+            android:text="3 members"
             android:layout_marginTop="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/circleMember"/>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
