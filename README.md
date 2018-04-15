@@ -27,3 +27,13 @@ User can add more credits to his account by paying money. As well as redeem it t
 Any app user can seek help by posting in app with some substential tags and with some credits. 
 Each post can be made globally asking help to any app user or can be posted within a circle for which the user is a part.
 
+## Screenshots
+
+<div style="float:left">
+  <img style="margin:10px" src="/Screencasts/7.png"> 
+  <img style="margin:10px" src="/Screencasts/6.png"> 
+  <img style="margin:10px" src="/Screencasts/2.png">  
+  <img style="margin:10px" src="/Screencasts/5.png"> 
+  <img style="margin:10px" src="/Screencasts/4.png">
+  <img style="margin:10px" src="/Screencasts/1.png"> 
+</div>
